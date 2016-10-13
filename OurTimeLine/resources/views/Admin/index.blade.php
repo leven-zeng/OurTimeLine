@@ -62,13 +62,14 @@
 
 
     <div id="form" class="row">
-        <p><label>地点：</label><input id="adress" name="adress" type="text"></p>
+        <p><label>地点：</label><input id="address" name="adress" type="text"></p>
         <p><label>主题：</label><input id="title" name="title" type="text"></p>
         <p><label>内容：</label><input id="content" name="content" type="text"></p>
         <p><label>时间：</label><input id="datetime" name="datetime" type="datetime" class="laydate-icon"></p>
 
         <p><button type="button" class="btn btn-dark" id="submit" onclick="postData()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button></p>
     </div>
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <script>
         ;!function(){
             //laydate.skin('molv');
@@ -86,9 +87,9 @@
                     return false;
                 }
             });
-            var params={adress:$("#adress").val(),title:$("#title").val(),content:$("#content").val(),datetime:$("#datetime").val()};
+            var params={adress:$("#adress").val(),title:$("#title").val(),content:$("#content").val(),datetime:$("#datetime").val(),_token:$("input[name='_token']").val()};
             $.ajax({
-                url:'../bean/addTimerec.php',
+                url:'{{url('admin/addtimeline')}}',
                 type:'post',
                 dateType:'json',
                 data:params,

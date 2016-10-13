@@ -47,7 +47,7 @@
                                                 ?>
                                                 @foreach($timesdata as $time)
                                                         <?php $i++; ?>
-                                                        {{$i}}
+                                                        
                                                 <li class="cls <?php if($i % 2==0) echo 'highlight' ?> ">
                                                         <p class="date">
                                                                 {{$time->date}}<br/>

@@ -22,7 +22,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
-//后台Admin的路由
+//锟斤拷台Admin锟斤拷路锟斤拷
 Route::any('/admin',['as'=>'admin.index','middleware'=>['auth'],'uses'=>'Admin\AdminController@index']);
 
 //Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu'], 'uses'=>'Admin\\IndexController@index']);
+
+Route::any('/admin/addtimeline',['as'=>'admin.addtimeline','middleware'=>['auth'],'uses'=>'Admin\AdminController@addtimeline']);
