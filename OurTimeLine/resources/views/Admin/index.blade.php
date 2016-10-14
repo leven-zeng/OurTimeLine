@@ -54,22 +54,59 @@
             user-select: none;
         }
         .layui-layer-btn{text-align: center!important;}
+
+        .wraper{ padding: 30px 0;}
+        .btn-wraper{ text-align: center;}
+        .btn-wraper input{ margin: 0 10px;}
+        #file-list{ width: 350px; margin: 20px auto;}
+        #file-list li{ margin-bottom: 10px;}
+        .file-name{ line-height: 30px;}
+        .progress{ height: 4px; font-size: 0; line-height: 4px; background: orange; width: 0;}
+        .tip1{text-align: center; font-size:14px; padding-top:10px;}
+        .tip2{text-align: center; font-size:12px; padding-top:10px; color:#b00}
+        .catalogue{ position: fixed; _position:absolute; _width:200px; left: 0; top: 0; border: 1px solid #ccc;padding: 10px; background: #eee}
+        .catalogue a{ line-height: 30px; color: #0c0}
+        .catalogue li{ padding: 0; margin: 0; list-style: none;}
     </style>
     <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="../layer/layer.js"></script>
     <script src="../js/laydate/laydate.js"></script>
 
 
+    <script src="../uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../uploadify/uploadify.css">
+
 
     <div id="form" class="row">
-        <p><label>地点：</label><input id="address" name="adress" type="text"></p>
+        <p><label>地点：</label><input id="address" name="address" type="text"></p>
         <p><label>主题：</label><input id="title" name="title" type="text"></p>
         <p><label>内容：</label><input id="content" name="content" type="text"></p>
         <p><label>时间：</label><input id="datetime" name="datetime" type="datetime" class="laydate-icon"></p>
+        <form>
+            <div id="queue"></div>
+            <input id="file_upload" name="file_upload" type="file" multiple="true">
+        </form>
+
+        <script type="text/javascript">
+            $(function() {
+                $('#file_upload').uploadify({
+                    'formData'     : {
+                        'timestamp' : '1476434852',
+                        'token'     : 'fcf0f89172215ca0cc3f51a77ba5d8ac'
+                    },
+                    'swf'      : 'uploadify.swf',
+                    'uploader' : 'uploadify.php'
+                });
+            });
+        </script>
+
 
         <p><button type="button" class="btn btn-dark" id="submit" onclick="postData()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button></p>
     </div>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+
+
+
     <script>
         ;!function(){
             //laydate.skin('molv');
@@ -87,7 +124,7 @@
                     return false;
                 }
             });
-            var params={adress:$("#adress").val(),title:$("#title").val(),content:$("#content").val(),datetime:$("#datetime").val(),_token:$("input[name='_token']").val()};
+            var params={address:$("#address").val(),title:$("#title").val(),content:$("#content").val(),datetime:$("#datetime").val(),_token:$("input[name='_token']").val()};
             $.ajax({
                 url:'{{url('admin/addtimeline')}}',
                 type:'post',

@@ -28,3 +28,5 @@ Route::any('/admin',['as'=>'admin.index','middleware'=>['auth'],'uses'=>'Admin\A
 //Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu'], 'uses'=>'Admin\\IndexController@index']);
 
 Route::any('/admin/addtimeline',['as'=>'admin.addtimeline','middleware'=>['auth'],'uses'=>'Admin\AdminController@addtimeline']);
+
+Route::any('/admin/uploadimg',['as'=>'admin.UploadImg','middleware'=>['auth'],'uses'=>'Admin\AdminController@UploadImg']);

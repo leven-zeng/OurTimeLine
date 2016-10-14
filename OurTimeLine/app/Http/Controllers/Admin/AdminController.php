@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
+
 class AdminController extends Controller
 {
     public function __construct()
@@ -37,5 +38,10 @@ class AdminController extends Controller
         }else{
             return '保存失败';
         }
+    }
+
+    //上传图片的服务端
+    public function UploadImg(Request $request){
+        Debugbar::info($request);
     }
 }
