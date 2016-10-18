@@ -40,8 +40,26 @@ class AdminController extends Controller
         }
     }
 
+    public function ImgTest(){
+        return view("Admin\ImgTest");
+    }
+
     //上传图片的服务端
     public function UploadImg(Request $request){
-        Debugbar::info($request);
+        $uploaddir = 'Images/uploads/';
+
+        $uploadfile = $uploaddir. md5(uniqid()).substr($_FILES['file']['name'], strrpos($_FILES['file']['name'], '.'));
+
+
+
+        print "<pre>";
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+            print "File is valid, and was successfully uploaded.  Here's some more debugging info:\n";
+            print_r($_FILES);
+        } else {
+            print "Possible file upload attack!  Here's some debugging info:\n";
+            print_r($_FILES);
+        }
+        print "</pre>";
     }
 }

@@ -6,10 +6,17 @@
  * Time: 14:28
  */
 
-        ?>
+?>
 
 @extends('layouts.app')
+<link rel="stylesheet" href="/zyUpload_php/control/css/zyUpload.css" type="text/css">
 
+<!--图片弹出层样式 必要样式-->
+<script type="text/javascript" src="/zyUpload_php/jquery-1.7.2.js"></script>
+<!-- 引用核心层插件 -->
+<script type="text/javascript" src="/zyUpload_php/core/zyFile.js"></script>
+<!-- 引用控制层插件 -->
+<script type="text/javascript" src="/zyUpload_php/control/js/zyUpload.js"></script>
 
 @section('content')
     <style type="text/css">
@@ -68,13 +75,10 @@
         .catalogue a{ line-height: 30px; color: #0c0}
         .catalogue li{ padding: 0; margin: 0; list-style: none;}
     </style>
-    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="../layer/layer.js"></script>
     <script src="../js/laydate/laydate.js"></script>
 
-
-    <script src="../uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="../uploadify/uploadify.css">
 
 
     <div id="form" class="row">
@@ -82,23 +86,9 @@
         <p><label>主题：</label><input id="title" name="title" type="text"></p>
         <p><label>内容：</label><input id="content" name="content" type="text"></p>
         <p><label>时间：</label><input id="datetime" name="datetime" type="datetime" class="laydate-icon"></p>
-        <form>
-            <div id="queue"></div>
-            <input id="file_upload" name="file_upload" type="file" multiple="true">
-        </form>
 
-        <script type="text/javascript">
-            $(function() {
-                $('#file_upload').uploadify({
-                    'formData'     : {
-                        'timestamp' : '1476434852',
-                        'token'     : 'fcf0f89172215ca0cc3f51a77ba5d8ac'
-                    },
-                    'swf'      : 'uploadify.swf',
-                    'uploader' : 'uploadify.php'
-                });
-            });
-        </script>
+
+        <div id="demo" class="demo"></div>
 
 
         <p><button type="button" class="btn btn-dark" id="submit" onclick="postData()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button></p>
@@ -108,6 +98,7 @@
 
 
     <script>
+
         ;!function(){
             //laydate.skin('molv');
             laydate({
