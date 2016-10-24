@@ -20,7 +20,7 @@ class AdminController extends Controller
     //
     public function index(){
         //dd('123');
-        return view('Admin\index');
+        return view('Admin\indextest');
     }
 
 
@@ -33,6 +33,15 @@ class AdminController extends Controller
         $timer->title=$request->get('title');
         $timer->content=$request->get('content');
         $timer->authorId=Auth::user()->id;
+
+        $imgs=$request->get('imagenames');
+        if(strlen($imgs)>0) {
+            $img = explode(",", $imgs);
+            foreach($img as $str){
+
+            }
+        }
+
         if($timer->save()){
             return 'success';
         }else{
@@ -46,20 +55,18 @@ class AdminController extends Controller
 
     //上传图片的服务端
     public function UploadImg(Request $request){
+        \Debugbar::disable();
         $uploaddir = 'Images/uploads/';
 
-        $uploadfile = $uploaddir. md5(uniqid()).substr($_FILES['file']['name'], strrpos($_FILES['file']['name'], '.'));
+        $uploadfile = md5(uniqid()).substr($_FILES['file']['name'], strrpos($_FILES['file']['name'], '.'));
 
 
-
-        print "<pre>";
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-            print "File is valid, and was successfully uploaded.  Here's some more debugging info:\n";
-            print_r($_FILES);
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir.$uploadfile)) {
+            //print "File is valid, and was successfully uploaded.  Here's some more debugging info:\n";
+            return($uploadfile);
         } else {
-            print "Possible file upload attack!  Here's some debugging info:\n";
+            print "图片上传失败！";
             print_r($_FILES);
         }
-        print "</pre>";
     }
 }
