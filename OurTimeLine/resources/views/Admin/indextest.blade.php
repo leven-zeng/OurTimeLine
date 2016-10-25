@@ -108,6 +108,14 @@
                 finishDel        :   false,  				  // 是否在上传文件完成后删除预览
                 /* 外部获得的回调接口 */
                 onSelect: function(selectFiles, allFiles){    // 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
+                    if(allFiles.length>3){
+                        layer.msg('最多允许上传三张图片',function(){});
+                        debugger;
+                        var num=allFiles.length-3;
+                        $(".upload_append_list:lt("+num+")").remove();
+                        allFiles.splice(0,num);
+                        return false;
+                    }
                     //console.info("当前选择了以下文件：");
                     //console.info(selectFiles);
                 },

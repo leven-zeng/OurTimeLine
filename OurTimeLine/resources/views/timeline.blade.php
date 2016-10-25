@@ -37,11 +37,10 @@
                         <h1 class="title" id="ourTime">我们的时光</h1>
 
                         ﻿@foreach($years as $year)
-
                         <div class="year">
-                                <h2 class="year_"><a href="#">{{$year->year}}<i></i></a></h2>
+                                <h2 class="year_"><a href="#">{{$year->year}}年<i></i></a></h2>
                                 <div class="list">
-                                        <ul>
+                                        <ul class="ullist">
                                                 <?php $timesdata=$timers->where('year',$year->year);
                                                 $i=0;
                                                 ?>
@@ -52,10 +51,9 @@
                                                         <p class="date">
                                                                 {{date("Y-m-d",strtotime( $time->date))}}<br/>
                                                                 <span class="silverstyle">{{$time->address}}</span><br/>
-                                                                <span class="silverstyle">{{$time->authorId}}</span>
                                                         </p>
                                                         <p class="intro">
-                                                                {{$time->title}}<div class="more" style="font-size: 12px;">
+                                                                {{$time->title}}<div class="more" style="font-size: 12px;width: 520px;">
                                                                 <div style="padding: 4px 0 10px 0;">{{$time->content}}</div>
                                                                 <div>
                                                                       <?php
@@ -102,14 +100,20 @@
 </div>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script>
-        $(".main .year .list").each(function (e, target) {
-                var $target=  $(target),
-                        $ul = $target.find("ul");
-                $target.height($ul.outerHeight()), $ul.css("position", "absolute");
-        });
-        $(".main .year>h2>a").click(function (e) {
-                e.preventDefault();
-                $(this).parents(".year").toggleClass("close");
+        $(function() {
+                setInterval(function(){
+                        $(".main .year .list").each(function (e, target) {
+                                var $target=  $(target),
+                                        $ul = $target.find("ul");
+                                $target.height($ul.outerHeight())
+                                $ul.css("position", "absolute");
+                        });
+                },100);
+
+                $(".main .year>h2>a").click(function (e) {
+                        e.preventDefault();
+                        $(this).parents(".year").toggleClass("close");
+                });
         });
 
         $(function() {

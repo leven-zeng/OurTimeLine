@@ -1,6 +1,6 @@
 body {
 	margin:0;
-	font:12px Î¢ÈíÑÅºÚ,ËÎÌå,Arial,sans-serif;
+	font:12px Î¢ï¿½ï¿½ï¿½Åºï¿½,ï¿½ï¿½ï¿½ï¿½,Arial,sans-serif;
 }
 html,body {
 	-webkit-text-size-adjust:none;
@@ -256,24 +256,27 @@ hr {
 }
 
 .date .intro .more{
-	font-family: Î¢ÈíÑÅºÚ;
+	font-family: Î¢ï¿½ï¿½ï¿½Åºï¿½;
 }
 
 .silverstyle{
 	margin-right: 5px;
-	font-family: Î¢ÈíÑÅºÚ;
+	font-family: Î¢ï¿½ï¿½ï¿½Åºï¿½;
 	font-size: 11px;
 	color: silver;
 }
 
 .title{
-	font-family: Î¢ÈíÑÅºÚ;
+	font-family: Î¢ï¿½ï¿½ï¿½Åºï¿½;
 	font-weight:bold;
 	font-style: inherit;
 }
 
 .year_{
-	font-family: Î¢ÈíÑÅºÚ;
+	font: 24px/180% "å¾®è½¯é›…é»‘","å®‹ä½“";
 	font-weight:bold;
+	margin-top: -20px;
 }
-
+.ullist{
+	position:inherit !important;
+}

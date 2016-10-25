@@ -62,7 +62,7 @@ class AdminController extends Controller
 
     //上传图片的服务端
     public function UploadImg(Request $request){
-        \Debugbar::disable();
+//        \Debugbar::disable();
         $uploaddir = 'Images/uploads/';
 
         $uploadfile = md5(uniqid()).substr($_FILES['file']['name'], strrpos($_FILES['file']['name'], '.'));
