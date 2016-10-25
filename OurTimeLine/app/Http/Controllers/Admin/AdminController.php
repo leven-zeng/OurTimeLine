@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\image;
+use App\Model\Images;
+use App\Model\test;
 use App\Model\Timers;
 use Illuminate\Http\Request;
 
@@ -20,6 +23,8 @@ class AdminController extends Controller
     //
     public function index(){
         //dd('123');
+       // $image=new images();
+        //dd($image::all());
         return view('Admin\indextest');
     }
 
@@ -34,15 +39,17 @@ class AdminController extends Controller
         $timer->content=$request->get('content');
         $timer->authorId=Auth::user()->id;
 
-        $imgs=$request->get('imagenames');
-        if(strlen($imgs)>0) {
-            $img = explode(",", $imgs);
-            foreach($img as $str){
-
-            }
-        }
-
         if($timer->save()){
+            $imgs=$request->get('imagenames');
+            if(strlen($imgs)>0) {
+                $img = explode(",", $imgs);
+                foreach($img as $str){
+                    $image=new images();
+                    $image->timerId=$timer->id;
+                    $image->imgName=$str;
+                    $image->save();
+                }
+            }
             return 'success';
         }else{
             return '保存失败';

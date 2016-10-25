@@ -159,7 +159,7 @@
                 dateType:'json',
                 data:params,
                 success:function(data){
-                    if(data=="OK"){
+                    if(data=="success"){
 //                    layer.msg('已经写入到您的时间轴了哦！');
                         layer.msg('已经写入到您的时间轴了哦，现在去看看？', {
                             time: 0 //不自动关闭
@@ -167,7 +167,7 @@
                             ,btn: ['必须啊', '待会看']
                             ,yes: function(index){
                                 layer.close(index);
-                                window.open("{{url("/")}}}");
+                                window.open("{{url("/")}}");
                             }
                         });
                     }

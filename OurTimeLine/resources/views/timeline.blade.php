@@ -50,7 +50,7 @@
                                                         
                                                 <li class="cls <?php if($i % 2==0) echo 'highlight' ?> ">
                                                         <p class="date">
-                                                                {{$time->date}}<br/>
+                                                                {{date("Y-m-d",strtotime( $time->date))}}<br/>
                                                                 <span class="silverstyle">{{$time->address}}</span><br/>
                                                                 <span class="silverstyle">{{$time->authorId}}</span>
                                                         </p>
@@ -58,7 +58,20 @@
                                                                 {{$time->title}}<div class="more" style="font-size: 12px;">
                                                                 <div style="padding: 4px 0 10px 0;">{{$time->content}}</div>
                                                                 <div>
-
+                                                                      <?php
+                                                                        $imgs=\App\Model\images::select('*')->where('timerId','=',$time->id)->get();
+                                                                        if($imgs->count()>0)
+                                                                        {
+                                                                        foreach($imgs as $image)
+                                                                        {
+                                                                                ?>
+                                                                        <a href="{{url('images/uploads/'.$image->imgName)}}" title="{{$time->title}}" class="customGal">
+                                                                                <img src="{{url('images/uploads/'.$image->imgName)}}" width="160" height=""  alt="" />
+                                                                        </a>
+                                                                <?php
+                                                                              }
+                                                                }
+                                                                              ?>
                                                                 </div>
                                                         </div>
                                                         </p>
