@@ -176,6 +176,9 @@
                             ,yes: function(index){
                                 layer.close(index);
                                 window.open("{{url("/")}}");
+                            },btn2:function(index){
+                                layer.close(index);
+                                window.location=window.location;
                             }
                         });
                     }

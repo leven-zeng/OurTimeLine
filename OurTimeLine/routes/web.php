@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 
-//��̨Admin��·��
+//
 Route::any('/admin',['as'=>'admin.index','middleware'=>['auth'],'uses'=>'Admin\AdminController@index']);
 
 //Route::get('admin/index', ['as' => 'admin.index', 'middleware' => ['auth','menu'], 'uses'=>'Admin\\IndexController@index']);

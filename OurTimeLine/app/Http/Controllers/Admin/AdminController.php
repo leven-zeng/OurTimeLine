@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\image;
-use App\Model\Images;
+
+use App\Model\images;
 use App\Model\test;
 use App\Model\Timers;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class AdminController extends Controller
         //dd('123');
        // $image=new images();
         //dd($image::all());
-        return view('Admin\indextest');
+        return view('Admin/indextest');
     }
 
 
@@ -57,13 +57,13 @@ class AdminController extends Controller
     }
 
     public function ImgTest(){
-        return view("Admin\ImgTest");
+        return view("Admin/ImgTest");
     }
 
     //上传图片的服务端
     public function UploadImg(Request $request){
 //        \Debugbar::disable();
-        $uploaddir = 'Images/uploads/';
+        $uploaddir = 'images/uploads/';
 
         $uploadfile = md5(uniqid()).substr($_FILES['file']['name'], strrpos($_FILES['file']['name'], '.'));
 
